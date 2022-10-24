@@ -8,7 +8,7 @@ import kitchenpos.menus.menu.tobe.domain.vo.MenuProductSpecification;
 import kitchenpos.menus.menu.tobe.domain.vo.MenuSpecification;
 import kitchenpos.menus.menu.tobe.domain.vo.ProductSpecification;
 import kitchenpos.menus.menu.tobe.domain.vo.Quantity;
-import kitchenpos.menus.menugroup.tobe.domain.MenuGroupRepository;
+import kitchenpos.menus.menugroup.domain.MenuGroupRepository;
 
 import java.util.List;
 import java.util.UUID;

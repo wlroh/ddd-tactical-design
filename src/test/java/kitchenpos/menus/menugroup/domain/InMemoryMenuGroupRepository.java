@@ -1,4 +1,4 @@
-package kitchenpos.menus.menugroup.tobe.domain;
+package kitchenpos.menus.menugroup.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;

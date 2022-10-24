@@ -1,6 +1,9 @@
 package kitchenpos.menus.menugroup.domain;
 
+import kitchenpos.common.domain.vo.Name;
+
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,29 +12,31 @@ import java.util.UUID;
 @Table(name = "menu_group")
 @Entity
 public class MenuGroup {
+
     @Column(name = "id", columnDefinition = "binary(16)")
     @Id
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Embedded
+    private Name name;
 
-    public MenuGroup() {
+    protected MenuGroup() {
     }
 
-    public UUID getId() {
+    private MenuGroup(final UUID id, final Name name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public static MenuGroup create(final String name) {
+        return new MenuGroup(UUID.randomUUID(), Name.valueOf(name));
+    }
+
+    public UUID id() {
         return id;
     }
 
-    public void setId(final UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
+    public Name name() {
         return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
     }
 }

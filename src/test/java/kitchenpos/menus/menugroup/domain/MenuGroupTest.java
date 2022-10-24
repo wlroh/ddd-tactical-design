@@ -1,4 +1,4 @@
-package kitchenpos.menus.menugroup.tobe.domain;
+package kitchenpos.menus.menugroup.domain;
 
 import kitchenpos.common.domain.vo.exception.InvalidNameException;
 import org.junit.jupiter.api.DisplayName;
