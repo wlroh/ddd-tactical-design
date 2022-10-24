@@ -2,8 +2,8 @@ package kitchenpos.menus.menu.tobe.infra;
 
 import kitchenpos.menus.menu.tobe.domain.ProductContextClient;
 import kitchenpos.menus.menu.tobe.domain.vo.ProductSpecification;
-import kitchenpos.products.tobe.domain.Product;
-import kitchenpos.products.tobe.domain.ProductRepository;
+import kitchenpos.products.domain.Product;
+import kitchenpos.products.domain.ProductRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

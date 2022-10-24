@@ -1,4 +1,4 @@
-package kitchenpos.products.tobe.domain;
+package kitchenpos.products.domain;
 
 import kitchenpos.common.domain.FakeProfanity;
 import kitchenpos.common.domain.Profanity;

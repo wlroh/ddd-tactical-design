@@ -19,16 +19,15 @@ import kitchenpos.menus.menu.tobe.infra.ProductContextRepositoryClient;
 import kitchenpos.menus.menugroup.tobe.domain.InMemoryMenuGroupRepository;
 import kitchenpos.menus.menugroup.tobe.domain.MenuGroup;
 import kitchenpos.menus.menugroup.tobe.domain.MenuGroupRepository;
-import kitchenpos.products.tobe.domain.InMemoryProductRepository;
-import kitchenpos.products.tobe.domain.Product;
-import kitchenpos.products.tobe.domain.ProductRepository;
+import kitchenpos.products.domain.InMemoryProductRepository;
+import kitchenpos.products.domain.Product;
+import kitchenpos.products.domain.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

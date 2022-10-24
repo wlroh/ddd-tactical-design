@@ -1,81 +1,52 @@
 package kitchenpos.products.application;
 
 import kitchenpos.common.domain.Profanity;
-import kitchenpos.menus.menu.domain.Menu;
-import kitchenpos.menus.menu.domain.MenuProduct;
-import kitchenpos.menus.menu.domain.MenuRepository;
+import kitchenpos.common.domain.vo.DisplayedName;
+import kitchenpos.products.application.dto.ProductRequest;
+import kitchenpos.products.application.dto.ProductResponse;
 import kitchenpos.products.domain.Product;
 import kitchenpos.products.domain.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class ProductService {
     private final ProductRepository productRepository;
-    private final MenuRepository menuRepository;
     private final Profanity profanity;
 
     public ProductService(
         final ProductRepository productRepository,
-        final MenuRepository menuRepository,
         final Profanity profanity
     ) {
         this.productRepository = productRepository;
-        this.menuRepository = menuRepository;
         this.profanity = profanity;
     }
 
     @Transactional
-    public Product create(final Product request) {
-        final BigDecimal price = request.getPrice();
-        if (Objects.isNull(price) || price.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException();
-        }
-        final String name = request.getName();
-        if (Objects.isNull(name) || profanity.containsProfanity(name)) {
-            throw new IllegalArgumentException();
-        }
-        final Product product = new Product();
-        product.setId(UUID.randomUUID());
-        product.setName(name);
-        product.setPrice(price);
-        return productRepository.save(product);
+    public ProductResponse create(final ProductRequest.Create request) {
+        final DisplayedName displayedName = DisplayedName.valueOf(request.getName(), profanity);
+        final Product product = Product.create(displayedName, request.getPrice());
+        productRepository.save(product);
+        return ProductResponse.from(product);
     }
 
     @Transactional
-    public Product changePrice(final UUID productId, final Product request) {
-        final BigDecimal price = request.getPrice();
-        if (Objects.isNull(price) || price.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException();
-        }
-        final Product product = productRepository.findById(productId)
-            .orElseThrow(NoSuchElementException::new);
-        product.setPrice(price);
-        final List<Menu> menus = menuRepository.findAllByProductId(productId);
-        for (final Menu menu : menus) {
-            BigDecimal sum = BigDecimal.ZERO;
-            for (final MenuProduct menuProduct : menu.getMenuProducts()) {
-                sum = sum.add(
-                    menuProduct.getProduct()
-                        .getPrice()
-                        .multiply(BigDecimal.valueOf(menuProduct.getQuantity()))
-                );
-            }
-            if (menu.getPrice().compareTo(sum) > 0) {
-                menu.setDisplayed(false);
-            }
-        }
-        return product;
+    public ProductResponse changePrice(final UUID productId, final ProductRequest.ChangePrice request) {
+        final Product product = productRepository.findById(productId).orElseThrow(IllegalArgumentException::new);
+        product.changePrice(request.getPrice());
+        productRepository.save(product);
+        return ProductResponse.from(product);
     }
 
-    @Transactional(readOnly = true)
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public List<ProductResponse> findAll() {
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(ProductResponse::from)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

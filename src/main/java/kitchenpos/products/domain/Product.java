@@ -1,49 +1,76 @@
 package kitchenpos.products.domain;
 
+import kitchenpos.common.domain.vo.DisplayedName;
+import kitchenpos.common.domain.vo.exception.InvalidDisplayedNameException;
+import kitchenpos.common.domain.vo.Price;
+import kitchenpos.common.event.ProductPriceChangedEvent;
+import org.springframework.data.domain.AbstractAggregateRoot;
+
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 @Table(name = "product")
 @Entity
-public class Product {
+public class Product extends AbstractAggregateRoot<Product> {
+
     @Column(name = "id", columnDefinition = "binary(16)")
     @Id
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Embedded
+    private DisplayedName displayedName;
 
-    @Column(name = "price", nullable = false)
-    private BigDecimal price;
+    @Embedded
+    private Price price;
 
-    public Product() {
+    protected Product() {
     }
 
-    public UUID getId() {
+    private Product(final UUID id, final DisplayedName displayedName, final Price price) {
+        this.id = id;
+        this.displayedName = displayedName;
+        this.price = price;
+    }
+
+    public static Product create(final DisplayedName displayedName, final Long price) {
+        if (Objects.isNull(displayedName)) {
+            throw new InvalidDisplayedNameException();
+        }
+        return new Product(UUID.randomUUID(), displayedName, Price.valueOf(price));
+    }
+
+    public void changePrice(final Long price) {
+        this.price = Price.valueOf(price);
+        registerEvent(new ProductPriceChangedEvent(id, price));
+    }
+
+    public UUID id() {
         return id;
     }
 
-    public void setId(final UUID id) {
-        this.id = id;
+    public DisplayedName displayedName() {
+        return displayedName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getPrice() {
+    public Price price() {
         return price;
     }
 
-    public void setPrice(final BigDecimal price) {
-        this.price = price;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
