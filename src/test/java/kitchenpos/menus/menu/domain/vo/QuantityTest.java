@@ -1,6 +1,6 @@
-package kitchenpos.menus.menu.tobe.domain.vo;
+package kitchenpos.menus.menu.domain.vo;
 
-import kitchenpos.menus.menu.tobe.domain.vo.exception.InvalidQuantityException;
+import kitchenpos.menus.menu.domain.vo.exception.InvalidQuantityException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

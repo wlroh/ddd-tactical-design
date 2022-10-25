@@ -1,6 +1,6 @@
-package kitchenpos.menus.menu.tobe.domain;
+package kitchenpos.menus.menu.domain;
 
-import kitchenpos.menus.menu.tobe.domain.vo.ProductSpecification;
+import kitchenpos.menus.menu.domain.vo.ProductSpecification;
 
 import java.util.UUID;
 

@@ -1,7 +1,7 @@
-package kitchenpos.menus.menu.tobe.infra;
+package kitchenpos.menus.menu.infra;
 
-import kitchenpos.menus.menu.tobe.domain.ProductContextClient;
-import kitchenpos.menus.menu.tobe.domain.vo.ProductSpecification;
+import kitchenpos.menus.menu.domain.ProductContextClient;
+import kitchenpos.menus.menu.domain.vo.ProductSpecification;
 import kitchenpos.products.domain.Product;
 import kitchenpos.products.domain.ProductRepository;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ public class ProductContextRepositoryClient implements ProductContextClient {
 
     private final ProductRepository productRepository;
 
-    public ProductContextRepositoryClient(ProductRepository productRepository) {
+    public ProductContextRepositoryClient(final ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

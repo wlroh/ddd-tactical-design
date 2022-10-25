@@ -1,4 +1,4 @@
-package kitchenpos.menus.menu.tobe.domain.exception;
+package kitchenpos.menus.menu.domain.exception;
 
 public class InvalidMenuPriceException extends IllegalArgumentException {
 

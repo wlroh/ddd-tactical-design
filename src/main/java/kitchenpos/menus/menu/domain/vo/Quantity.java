@@ -1,6 +1,6 @@
-package kitchenpos.menus.menu.tobe.domain.vo;
+package kitchenpos.menus.menu.domain.vo;
 
-import kitchenpos.menus.menu.tobe.domain.vo.exception.InvalidQuantityException;
+import kitchenpos.menus.menu.domain.vo.exception.InvalidQuantityException;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

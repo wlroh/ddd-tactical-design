@@ -1,4 +1,4 @@
-package kitchenpos.menus.menu.tobe.domain.vo.exception;
+package kitchenpos.menus.menu.domain.vo.exception;
 
 public class InvalidQuantityException extends IllegalArgumentException {
 

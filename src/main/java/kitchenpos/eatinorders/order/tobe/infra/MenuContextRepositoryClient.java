@@ -2,8 +2,8 @@ package kitchenpos.eatinorders.order.tobe.infra;
 
 import kitchenpos.eatinorders.order.tobe.domain.MenuContextClient;
 import kitchenpos.eatinorders.order.tobe.domain.vo.MenuSpecification;
-import kitchenpos.menus.menu.tobe.domain.Menu;
-import kitchenpos.menus.menu.tobe.domain.MenuRepository;
+import kitchenpos.menus.menu.domain.Menu;
+import kitchenpos.menus.menu.domain.MenuRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

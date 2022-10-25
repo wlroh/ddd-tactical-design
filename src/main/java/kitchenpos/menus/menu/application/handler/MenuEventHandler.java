@@ -2,8 +2,8 @@ package kitchenpos.menus.menu.application.handler;
 
 import kitchenpos.common.domain.vo.Price;
 import kitchenpos.common.event.ProductPriceChangedEvent;
-import kitchenpos.menus.menu.tobe.domain.Menu;
-import kitchenpos.menus.menu.tobe.domain.MenuRepository;
+import kitchenpos.menus.menu.domain.Menu;
+import kitchenpos.menus.menu.domain.MenuRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,7 +17,7 @@ public class MenuEventHandler {
 
     private final MenuRepository menuRepository;
 
-    public MenuEventHandler(MenuRepository menuRepository) {
+    public MenuEventHandler(final MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
 

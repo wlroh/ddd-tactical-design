@@ -1,104 +1,130 @@
 package kitchenpos.menus.menu.domain;
 
-import kitchenpos.menus.menugroup.domain.MenuGroup;
+import kitchenpos.common.domain.vo.DisplayedName;
+import kitchenpos.common.domain.vo.Price;
+import kitchenpos.menus.menu.domain.exception.InvalidMenuPriceException;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Objects;
 import java.util.UUID;
 
 @Table(name = "menu")
 @Entity
 public class Menu {
+
     @Column(name = "id", columnDefinition = "binary(16)")
     @Id
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Embedded
+    private DisplayedName displayedName;
 
-    @Column(name = "price", nullable = false)
-    private BigDecimal price;
+    @Embedded
+    private Price price;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(
-        name = "menu_group_id",
-        columnDefinition = "binary(16)",
-        foreignKey = @ForeignKey(name = "fk_menu_to_menu_group")
-    )
-    private MenuGroup menuGroup;
+    @Column(name = "menu_group_id", nullable = false)
+    private UUID menuGroupId;
 
     @Column(name = "displayed", nullable = false)
     private boolean displayed;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(
-        name = "menu_id",
-        nullable = false,
-        columnDefinition = "binary(16)",
-        foreignKey = @ForeignKey(name = "fk_menu_product_to_menu")
-    )
-    private List<MenuProduct> menuProducts;
+    @Embedded
+    private MenuProducts menuProducts;
 
-    @Transient
-    private UUID menuGroupId;
-
-    public Menu() {
+    protected Menu() {
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(final UUID id) {
+    private Menu(UUID id, DisplayedName displayedName, Price price, UUID menuGroupId, boolean displayed, MenuProducts menuProducts) {
         this.id = id;
+        this.displayedName = displayedName;
+        this.price = price;
+        this.menuGroupId = menuGroupId;
+        this.displayed = displayed;
+        this.menuProducts = menuProducts;
     }
 
-    public String getName() {
-        return name;
+    protected static Menu create(final DisplayedName displayedName, final Price price, final UUID menuGroupId, final boolean displayed, final MenuProducts menuProducts) {
+        validatePrice(price, menuProducts.totalAmount());
+        final Menu menu = new Menu(UUID.randomUUID(), displayedName, price, menuGroupId, displayed, menuProducts);
+        menu.menuProducts.makeRelation(menu);
+        return menu;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    private static void validatePrice(final Price price, final Price totalAmount) {
+        if (price.isLessThan(totalAmount) || price.equals(totalAmount)) {
+            return;
+        }
+        throw new InvalidMenuPriceException(price.toLong(), totalAmount.toLong());
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(final BigDecimal price) {
+    public void changePrice(Price price) {
+        if (Objects.isNull(price)) {
+            throw new IllegalArgumentException("변경할 금액이 필요합니다.");
+        }
+        validatePrice(price, menuProducts.totalAmount());
         this.price = price;
     }
 
-    public MenuGroup getMenuGroup() {
-        return menuGroup;
+    public void changeMenuProductPrice(final UUID productId, final Price price) {
+        menuProducts.changePrice(productId, price);
+        if (this.price.isBiggerThan(menuProducts.totalAmount())) {
+            hide();
+        }
     }
 
-    public void setMenuGroup(final MenuGroup menuGroup) {
-        this.menuGroup = menuGroup;
+    public void show() {
+        if (price.isBiggerThan(menuProducts.totalAmount())) {
+            throw new IllegalStateException();
+        }
+        displayed = true;
+    }
+
+    public void hide() {
+        displayed = false;
+    }
+
+    public UUID id() {
+        return id;
+    }
+
+    public DisplayedName displayedName() {
+        return displayedName;
+    }
+
+    public Price price() {
+        return price;
     }
 
     public boolean isDisplayed() {
         return displayed;
     }
 
-    public void setDisplayed(final boolean displayed) {
-        this.displayed = displayed;
-    }
-
-    public List<MenuProduct> getMenuProducts() {
-        return menuProducts;
-    }
-
-    public void setMenuProducts(final List<MenuProduct> menuProducts) {
-        this.menuProducts = menuProducts;
-    }
-
-    public UUID getMenuGroupId() {
+    public UUID menuGroupId() {
         return menuGroupId;
     }
 
-    public void setMenuGroupId(final UUID menuGroupId) {
-        this.menuGroupId = menuGroupId;
+    public MenuProducts menuProducts() {
+        return menuProducts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Menu menu = (Menu) o;
+        return Objects.equals(id, menu.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

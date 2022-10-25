@@ -1,7 +1,10 @@
 package kitchenpos.menus.menu.ui;
 
+import kitchenpos.common.domain.vo.Price;
 import kitchenpos.menus.menu.application.MenuService;
+import kitchenpos.menus.menu.application.dto.MenuResponse;
 import kitchenpos.menus.menu.domain.Menu;
+import kitchenpos.menus.menu.domain.vo.MenuSpecification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,29 +22,29 @@ public class MenuRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Menu> create(@RequestBody final Menu request) {
-        final Menu response = menuService.create(request);
+    public ResponseEntity<MenuResponse> create(@RequestBody final MenuSpecification menuSpecification) {
+        final MenuResponse response = menuService.create(menuSpecification);
         return ResponseEntity.created(URI.create("/api/menus/" + response.getId()))
             .body(response);
     }
 
     @PutMapping("/{menuId}/price")
-    public ResponseEntity<Menu> changePrice(@PathVariable final UUID menuId, @RequestBody final Menu request) {
-        return ResponseEntity.ok(menuService.changePrice(menuId, request));
+    public ResponseEntity<MenuResponse> changePrice(@PathVariable final UUID menuId, @RequestBody final Price price) {
+        return ResponseEntity.ok(menuService.changePrice(menuId, price));
     }
 
     @PutMapping("/{menuId}/display")
-    public ResponseEntity<Menu> display(@PathVariable final UUID menuId) {
+    public ResponseEntity<MenuResponse> display(@PathVariable final UUID menuId) {
         return ResponseEntity.ok(menuService.display(menuId));
     }
 
     @PutMapping("/{menuId}/hide")
-    public ResponseEntity<Menu> hide(@PathVariable final UUID menuId) {
+    public ResponseEntity<MenuResponse> hide(@PathVariable final UUID menuId) {
         return ResponseEntity.ok(menuService.hide(menuId));
     }
 
     @GetMapping
-    public ResponseEntity<List<Menu>> findAll() {
+    public ResponseEntity<List<MenuResponse>> findAll() {
         return ResponseEntity.ok(menuService.findAll());
     }
 }

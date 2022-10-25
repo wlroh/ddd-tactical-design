@@ -1,11 +1,11 @@
-package kitchenpos.menus.menu.tobe.domain;
+package kitchenpos.menus.menu.domain;
 
 import kitchenpos.common.domain.FakeProfanity;
 import kitchenpos.common.domain.Profanity;
 import kitchenpos.common.domain.vo.DisplayedName;
 import kitchenpos.common.domain.vo.Price;
-import kitchenpos.menus.menu.tobe.domain.exception.InvalidMenuPriceException;
-import kitchenpos.menus.menu.tobe.domain.vo.Quantity;
+import kitchenpos.menus.menu.domain.exception.InvalidMenuPriceException;
+import kitchenpos.menus.menu.domain.vo.Quantity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

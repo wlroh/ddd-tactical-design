@@ -1,4 +1,4 @@
-package kitchenpos.menus.menu.tobe.domain;
+package kitchenpos.menus.menu.domain;
 
 import kitchenpos.common.domain.FakeProfanity;
 import kitchenpos.common.domain.Profanity;
@@ -6,10 +6,10 @@ import kitchenpos.common.domain.vo.DisplayedName;
 import kitchenpos.common.domain.vo.Price;
 import kitchenpos.common.domain.vo.exception.InvalidDisplayedNameException;
 import kitchenpos.common.domain.vo.exception.InvalidPriceException;
-import kitchenpos.menus.menu.tobe.domain.vo.MenuProductSpecification;
-import kitchenpos.menus.menu.tobe.domain.vo.MenuSpecification;
-import kitchenpos.menus.menu.tobe.domain.vo.exception.InvalidQuantityException;
-import kitchenpos.menus.menu.tobe.infra.ProductContextRepositoryClient;
+import kitchenpos.menus.menu.domain.vo.MenuProductSpecification;
+import kitchenpos.menus.menu.domain.vo.MenuSpecification;
+import kitchenpos.menus.menu.domain.vo.exception.InvalidQuantityException;
+import kitchenpos.menus.menu.infra.ProductContextRepositoryClient;
 import kitchenpos.menus.menugroup.domain.InMemoryMenuGroupRepository;
 import kitchenpos.menus.menugroup.domain.MenuGroup;
 import kitchenpos.menus.menugroup.domain.MenuGroupRepository;

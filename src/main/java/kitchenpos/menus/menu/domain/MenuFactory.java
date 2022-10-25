@@ -1,13 +1,13 @@
-package kitchenpos.menus.menu.tobe.domain;
+package kitchenpos.menus.menu.domain;
 
 import kitchenpos.common.annotation.DomainService;
 import kitchenpos.common.domain.Profanity;
 import kitchenpos.common.domain.vo.DisplayedName;
 import kitchenpos.common.domain.vo.Price;
-import kitchenpos.menus.menu.tobe.domain.vo.MenuProductSpecification;
-import kitchenpos.menus.menu.tobe.domain.vo.MenuSpecification;
-import kitchenpos.menus.menu.tobe.domain.vo.ProductSpecification;
-import kitchenpos.menus.menu.tobe.domain.vo.Quantity;
+import kitchenpos.menus.menu.domain.vo.MenuProductSpecification;
+import kitchenpos.menus.menu.domain.vo.MenuSpecification;
+import kitchenpos.menus.menu.domain.vo.ProductSpecification;
+import kitchenpos.menus.menu.domain.vo.Quantity;
 import kitchenpos.menus.menugroup.domain.MenuGroupRepository;
 
 import java.util.List;
