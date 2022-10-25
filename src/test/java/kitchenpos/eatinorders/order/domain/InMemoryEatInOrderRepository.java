@@ -1,4 +1,4 @@
-package kitchenpos.eatinorders.order.tobe.domain;
+package kitchenpos.eatinorders.order.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class InMemoryEatInOrderRepository implements EatInOrderRepository {
     }
 
     @Override
-    public boolean existsByOrderTableAndStatusNot(final UUID orderTableId, final EatInOrderStatus status) {
+    public boolean existsByOrderTableIdAndStatusNot(final UUID orderTableId, final EatInOrderStatus status) {
         return eatInOrders.values()
                 .stream()
                 .filter(eatInOrder -> eatInOrder.orderTableId().equals(orderTableId))

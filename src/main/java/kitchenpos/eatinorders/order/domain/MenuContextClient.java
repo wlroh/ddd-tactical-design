@@ -1,6 +1,6 @@
-package kitchenpos.eatinorders.order.tobe.domain;
+package kitchenpos.eatinorders.order.domain;
 
-import kitchenpos.eatinorders.order.tobe.domain.vo.MenuSpecification;
+import kitchenpos.eatinorders.order.domain.vo.MenuSpecification;
 
 import java.util.UUID;
 

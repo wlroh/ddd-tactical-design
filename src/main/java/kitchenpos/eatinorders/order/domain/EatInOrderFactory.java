@@ -1,9 +1,9 @@
-package kitchenpos.eatinorders.order.tobe.domain;
+package kitchenpos.eatinorders.order.domain;
 
 import kitchenpos.common.annotation.DomainService;
 import kitchenpos.common.domain.vo.Price;
-import kitchenpos.eatinorders.order.tobe.domain.vo.MenuSpecification;
-import kitchenpos.eatinorders.order.tobe.domain.vo.OrderLineItemSpecification;
+import kitchenpos.eatinorders.order.domain.vo.MenuSpecification;
+import kitchenpos.eatinorders.order.domain.vo.OrderLineItemSpecification;
 import kitchenpos.eatinorders.ordertable.domain.OrderTable;
 import kitchenpos.eatinorders.ordertable.domain.OrderTableRepository;
 

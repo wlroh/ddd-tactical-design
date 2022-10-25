@@ -1,10 +1,10 @@
-package kitchenpos.eatinorders.order.tobe.domain;
+package kitchenpos.eatinorders.order.domain;
 
 import kitchenpos.common.domain.FakeProfanity;
 import kitchenpos.common.domain.Profanity;
 import kitchenpos.common.domain.vo.DisplayedName;
-import kitchenpos.eatinorders.order.tobe.domain.vo.OrderLineItemSpecification;
-import kitchenpos.eatinorders.order.tobe.infra.MenuContextRepositoryClient;
+import kitchenpos.eatinorders.order.domain.vo.OrderLineItemSpecification;
+import kitchenpos.eatinorders.order.infra.MenuContextRepositoryClient;
 import kitchenpos.eatinorders.ordertable.domain.InMemoryOrderTableRepository;
 import kitchenpos.eatinorders.ordertable.domain.OrderTable;
 import kitchenpos.eatinorders.ordertable.domain.OrderTableRepository;

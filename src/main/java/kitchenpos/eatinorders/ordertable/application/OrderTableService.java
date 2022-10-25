@@ -28,7 +28,7 @@ public class OrderTableService {
 
     @Transactional
     public OrderTableResponse create(final Name name) {
-        final OrderTable orderTable = OrderTable.createEmptyTable(name);
+        final OrderTable orderTable = OrderTable.createEmptyTable(name.value());
         orderTableRepository.save(orderTable);
         return OrderTableResponse.from(orderTable);
     }

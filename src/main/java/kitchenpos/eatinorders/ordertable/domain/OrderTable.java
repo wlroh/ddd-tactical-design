@@ -6,10 +6,14 @@ import kitchenpos.eatinorders.ordertable.domain.vo.GuestOfNumbers;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 import java.util.UUID;
 
+@Table(name = "order_table")
+@Entity
 public class OrderTable {
 
     private static final boolean EMPTY_TABLE = false;

@@ -1,4 +1,4 @@
-package kitchenpos.eatinorders.order.tobe.domain.vo;
+package kitchenpos.eatinorders.order.domain.vo;
 
 import kitchenpos.common.domain.vo.Price;
 

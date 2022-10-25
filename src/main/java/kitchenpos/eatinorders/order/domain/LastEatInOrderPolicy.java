@@ -1,4 +1,4 @@
-package kitchenpos.eatinorders.order.tobe.domain;
+package kitchenpos.eatinorders.order.domain;
 
 import kitchenpos.common.annotation.DomainService;
 import kitchenpos.eatinorders.ordertable.domain.CleanUpPolicy;
@@ -16,6 +16,6 @@ public class LastEatInOrderPolicy implements CleanUpPolicy {
 
     @Override
     public boolean isMatchCondition(final UUID orderTableId) {
-        return !eatInOrderRepository.existsByOrderTableAndStatusNot(orderTableId, EatInOrderStatus.COMPLETED);
+        return !eatInOrderRepository.existsByOrderTableIdAndStatusNot(orderTableId, EatInOrderStatus.COMPLETED);
     }
 }

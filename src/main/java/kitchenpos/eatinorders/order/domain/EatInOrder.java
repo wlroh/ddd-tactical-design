@@ -1,4 +1,4 @@
-package kitchenpos.eatinorders.order.tobe.domain;
+package kitchenpos.eatinorders.order.domain;
 
 import kitchenpos.common.event.LastEatInOrderCompletedEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
@@ -22,7 +22,7 @@ public class EatInOrder extends AbstractAggregateRoot<EatInOrder> {
     @Id
     private UUID id;
 
-    @Column(name = "order_id", nullable = false)
+    @Column(name = "order_table_id", nullable = false)
     private UUID orderTableId;
 
     @Column(name = "order_date_time", nullable = false)
