@@ -1,13 +1,13 @@
-package kitchenpos.eatinorders.ordertable.tobe.domain;
+package kitchenpos.eatinorders.ordertable.domain;
 
-import kitchenpos.eatinorders.ordertable.tobe.domain.vo.GuestOfNumbers;
+import kitchenpos.eatinorders.ordertable.domain.vo.GuestOfNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static kitchenpos.eatinorders.ordertable.tobe.domain.CleanUpPolicyFixture.FAIL;
-import static kitchenpos.eatinorders.ordertable.tobe.domain.CleanUpPolicyFixture.PASS;
+import static kitchenpos.eatinorders.ordertable.domain.CleanUpPolicyFixture.FAIL;
+import static kitchenpos.eatinorders.ordertable.domain.CleanUpPolicyFixture.PASS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

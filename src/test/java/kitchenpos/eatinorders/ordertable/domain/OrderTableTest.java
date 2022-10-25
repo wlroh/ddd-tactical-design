@@ -1,8 +1,8 @@
-package kitchenpos.eatinorders.ordertable.tobe.domain;
+package kitchenpos.eatinorders.ordertable.domain;
 
 import kitchenpos.common.domain.vo.Name;
-import kitchenpos.eatinorders.ordertable.tobe.domain.exception.NoUsedOrderTableException;
-import kitchenpos.eatinorders.ordertable.tobe.domain.vo.GuestOfNumbers;
+import kitchenpos.eatinorders.ordertable.domain.exception.NoUsedOrderTableException;
+import kitchenpos.eatinorders.ordertable.domain.vo.GuestOfNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -4,8 +4,8 @@ import kitchenpos.common.annotation.DomainService;
 import kitchenpos.common.domain.vo.Price;
 import kitchenpos.eatinorders.order.tobe.domain.vo.MenuSpecification;
 import kitchenpos.eatinorders.order.tobe.domain.vo.OrderLineItemSpecification;
-import kitchenpos.eatinorders.ordertable.tobe.domain.OrderTable;
-import kitchenpos.eatinorders.ordertable.tobe.domain.OrderTableRepository;
+import kitchenpos.eatinorders.ordertable.domain.OrderTable;
+import kitchenpos.eatinorders.ordertable.domain.OrderTableRepository;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,8 +1,8 @@
 package kitchenpos.eatinorders.order.tobe.domain;
 
-import kitchenpos.eatinorders.ordertable.tobe.domain.InMemoryOrderTableRepository;
-import kitchenpos.eatinorders.ordertable.tobe.domain.OrderTable;
-import kitchenpos.eatinorders.ordertable.tobe.domain.OrderTableRepository;
+import kitchenpos.eatinorders.ordertable.domain.InMemoryOrderTableRepository;
+import kitchenpos.eatinorders.ordertable.domain.OrderTable;
+import kitchenpos.eatinorders.ordertable.domain.OrderTableRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

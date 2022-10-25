@@ -5,10 +5,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface OrderTableRepository {
-    OrderTable save(OrderTable orderTable);
+    OrderTable save(final OrderTable orderTable);
 
-    Optional<OrderTable> findById(UUID id);
+    Optional<OrderTable> findById(final UUID id);
 
     List<OrderTable> findAll();
 }
-

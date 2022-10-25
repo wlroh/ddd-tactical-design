@@ -1,4 +1,4 @@
-package kitchenpos.eatinorders.ordertable.tobe.domain.vo.exception;
+package kitchenpos.eatinorders.ordertable.domain.vo.exception;
 
 public class MinimumGuestOfNumbersException extends IllegalArgumentException {
 

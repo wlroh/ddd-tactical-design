@@ -1,6 +1,6 @@
-package kitchenpos.eatinorders.ordertable.tobe.domain.vo;
+package kitchenpos.eatinorders.ordertable.domain.vo;
 
-import kitchenpos.eatinorders.ordertable.tobe.domain.vo.exception.MinimumGuestOfNumbersException;
+import kitchenpos.eatinorders.ordertable.domain.vo.exception.MinimumGuestOfNumbersException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

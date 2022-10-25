@@ -1,59 +1,93 @@
 package kitchenpos.eatinorders.ordertable.domain;
 
+import kitchenpos.common.domain.vo.Name;
+import kitchenpos.eatinorders.ordertable.domain.exception.NoUsedOrderTableException;
+import kitchenpos.eatinorders.ordertable.domain.vo.GuestOfNumbers;
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Embedded;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Objects;
 import java.util.UUID;
 
-@Table(name = "order_table")
-@Entity
 public class OrderTable {
+
+    private static final boolean EMPTY_TABLE = false;
+    private static final boolean USED_TABLE = true;
+
     @Column(name = "id", columnDefinition = "binary(16)")
     @Id
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Embedded
+    private Name name;
 
-    @Column(name = "number_of_guests", nullable = false)
-    private int numberOfGuests;
+    @Embedded
+    private GuestOfNumbers guestOfNumbers;
 
     @Column(name = "occupied", nullable = false)
     private boolean occupied;
 
-    public OrderTable() {
+    protected OrderTable() {
     }
 
-    public UUID getId() {
+    private OrderTable(final Name name, final GuestOfNumbers guestOfNumbers, final boolean occupied) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.guestOfNumbers = guestOfNumbers;
+        this.occupied = occupied;
+    }
+
+    public static OrderTable createEmptyTable(final String name) {
+        return new OrderTable(Name.valueOf(name), GuestOfNumbers.ZERO, EMPTY_TABLE);
+    }
+
+    public void use() {
+        occupied = USED_TABLE;
+    }
+
+    void clear() {
+        guestOfNumbers = GuestOfNumbers.ZERO;
+        occupied = EMPTY_TABLE;
+    }
+
+    public void changeGuestOfNumbers(final GuestOfNumbers guestOfNumbers) {
+        if (isEmptyTable()) {
+            throw new NoUsedOrderTableException();
+        }
+        this.guestOfNumbers = guestOfNumbers;
+    }
+
+    public UUID id() {
         return id;
     }
 
-    public void setId(final UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
+    public Name name() {
         return name;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public GuestOfNumbers guestOfNumbers() {
+        return guestOfNumbers;
     }
 
-    public int getNumberOfGuests() {
-        return numberOfGuests;
+    public boolean isEmptyTable() {
+        return occupied == EMPTY_TABLE;
     }
 
-    public void setNumberOfGuests(final int numberOfGuests) {
-        this.numberOfGuests = numberOfGuests;
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OrderTable that = (OrderTable) o;
+        return Objects.equals(id, that.id);
     }
 
-    public boolean isOccupied() {
-        return occupied;
-    }
-
-    public void setOccupied(final boolean occupied) {
-        this.occupied = occupied;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

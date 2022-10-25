@@ -1,7 +1,7 @@
 package kitchenpos.eatinorders.ordertable.application.handler;
 
 import kitchenpos.common.event.LastEatInOrderCompletedEvent;
-import kitchenpos.eatinorders.ordertable.tobe.domain.OrderTableCleanUp;
+import kitchenpos.eatinorders.ordertable.domain.OrderTableCleanUp;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;

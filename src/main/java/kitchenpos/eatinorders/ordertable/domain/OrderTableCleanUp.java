@@ -1,4 +1,4 @@
-package kitchenpos.eatinorders.ordertable.tobe.domain;
+package kitchenpos.eatinorders.ordertable.domain;
 
 import kitchenpos.common.annotation.DomainService;
 

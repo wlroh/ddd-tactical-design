@@ -1,7 +1,7 @@
 package kitchenpos.eatinorders.order.tobe.domain;
 
 import kitchenpos.common.annotation.DomainService;
-import kitchenpos.eatinorders.ordertable.tobe.domain.CleanUpPolicy;
+import kitchenpos.eatinorders.ordertable.domain.CleanUpPolicy;
 
 import java.util.UUID;
 
